@@ -3,7 +3,7 @@ This is my personal dot files for [Wezterm](https://wezfurlong.org/wezterm)!
 
 ## 🚧 Installing.
 You should install some stuff before we get started.
-- [Wezterm](https://wezfurlong/wezterm) it self. - Duh, if we don't have it, what will you do?
+- [Wezterm](https://wezfurlong.org/wezterm) it self. - Duh, if we don't have it, what will you do?
 - Cartograph CF. - The font. It is pay-for but, you can find Google around.
 
 Now, we'll go install the dotfiles it self!
