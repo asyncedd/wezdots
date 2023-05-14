@@ -16,8 +16,8 @@ config.colors = {
   tab_bar = {
     background = palette.mantle,
     active_tab = {
-      bg_color = palette.mauve,
-      fg_color = palette.mantle,
+      bg_color = palette.base,
+      fg_color = palette.text,
       intensity = "Bold",
       underline = "None",
       italic = false,
@@ -32,11 +32,11 @@ config.colors = {
       fg_color = palette.surface1,
     },
     new_tab = {
-      bg_color = palette.mantle,
+      bg_color = palette.surface0,
       fg_color = palette.subtext0,
     },
     new_tab_hover = {
-      bg_color = palette.mantle,
+      bg_color = palette.surface1,
       fg_color = palette.surface2,
     },
   },
@@ -46,7 +46,5 @@ wezterm.on("format-tab-title", function(tab)
   local prog = tab.active_pane.user_vars.PROG
   return tab.active_pane.title .. (prog or "")
 end)
-
-require("wezterm.tab")
 
 return config
