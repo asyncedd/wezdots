@@ -157,7 +157,15 @@ config.tab_max_width = 50
 
 config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 1000 }
 
-config.keys = {}
+config.keys = {
+  -- Create a new tab in the same domain as the current pane.
+  -- This is usually what you want.
+  {
+    key = "t",
+    mods = "LEADER",
+    action = act.SpawnTab("CurrentPaneDomain"),
+  },
+}
 
 for i = 1, 8 do
   -- CTRL+ALT + number to activate that tab
