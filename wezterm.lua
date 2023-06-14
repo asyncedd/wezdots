@@ -9,6 +9,11 @@ local dividers = {
   },
 }
 
+local leader = {
+  off = " ",
+  on = " ",
+}
+
 local Config = {
   divider = dividers.rounded
 }
@@ -38,12 +43,14 @@ config.use_fancy_tab_bar = false
 
 config.tab_max_width = 50
 
+config.leader = { key = "a", mods = "ALT", timeout_milliseconds = 1000 }
+
 -- default hyperlink rules
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
 
 table.insert(config.hyperlink_rules, {
   regex = [[(SC\d+)]],
-  format = 'https://www.shellcheck.net/wiki/$1',
+  format = "https://www.shellcheck.net/wiki/$1",
 })
 
 config.colors = {
@@ -124,8 +131,16 @@ end)
 
 wezterm.on("update-status", function(window, _pane)
   window:set_left_status(wezterm.format({
-    { Text = " " },
     { Background = { Color = mocha.crust } },
+    { Foreground = { Color = mocha.red } },
+    { Text = " " },
+    { Text = L_D },
+    { Foreground = { Color = mocha.crust } },
+    { Background = { Color = mocha.red } },
+    { Text = window:leader_is_active() and leader.on or leader.off },
+    { Background = { Color = mocha.red } },
+    { Foreground = { Color = mocha.red } },
+    { Background = { Color = mocha.red } },
     { Foreground = { Color = mocha.blue } },
     { Text = L_D },
     { Background = { Color = mocha.blue } },
