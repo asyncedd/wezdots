@@ -88,6 +88,10 @@ local function get_process(tab)
       fg = mocha.blue,
       icon = "󰮯 ",
     },
+    ["tmux"] = {
+      fg = mocha.green,
+      icon = " ",
+    },
   }
 
   local process_name = string.gsub(tab.active_pane.foreground_process_name, "(.*[/\\])(.*)", "%2")
