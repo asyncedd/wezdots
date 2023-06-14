@@ -84,12 +84,16 @@ local L_D = Config.divider.left
 local R_D = Config.divider.right
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, cfg, hover, max_width)
+	local i = tab.tab_index % 6
   local title = tab_title(tab)
   if tab.is_active then
     return {
       { Background = { Color = mocha.crust } },
       { Foreground = { Color = mocha.surface0 } },
       { Text = L_D },
+      { Background = { Color = mocha.surface0 } },
+      { Foreground = { Color = mocha.text } },
+      { Text = "" .. i .. ":" },
       { Background = { Color = mocha.surface0 } },
       { Foreground = { Color = mocha.text } },
       { Text = " " .. title .. " " },
