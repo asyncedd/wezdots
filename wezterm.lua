@@ -98,11 +98,6 @@ local function get_process(tab)
   }
 end
 
-local function day_of_week_in_japan(weeknum)
-	local days = { "日", "月", "火", "水", "木", "金", "土" }
-	return days[weeknum + 1]
-end
-
 local dividers = {
   rounded = {
     left = utf8.char(0xe0b6),
@@ -264,7 +259,7 @@ wezterm.on("update-status", function(window, _pane)
     { Text = L_D },
     { Background = { Color = mocha.green } },
     { Foreground = { Color = mocha.base } },
-    { Text = string.format(" %s %s %s", wezterm.time.now():format("%H:%M"), wezterm.strftime("%-m/%-d"), day_of_week_in_japan(wezterm.strftime("%u")) ) },
+    { Text = string.format(" %s %s", wezterm.time.now():format("%H:%M"), wezterm.strftime("%-m/%-d")) },
     { Text = " " },
   }))
 end)
