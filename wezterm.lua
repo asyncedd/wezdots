@@ -3,7 +3,7 @@ local wezterm = require("wezterm")
 local config = {
   font = wezterm.font("Cartograph CF"),
 
-  colorscheme = "Catppuccin Mocha",
+  color_scheme = "Catppuccin Mocha",
 
   animation_fps = 1,
 
