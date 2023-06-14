@@ -46,6 +46,19 @@ table.insert(config.hyperlink_rules, {
   format = 'https://www.shellcheck.net/wiki/$1',
 })
 
+config.colors = {
+  tab_bar = {
+    new_tab = {
+      bg_color = mocha.base,
+      fg_color = mocha.text,
+    },
+    new_tab_hover = {
+      bg_color = mocha.surface0,
+      fg_color = mocha.text,
+    },
+  },
+}
+
 wezterm.on("update-right-status", function(window, pane)
   local title = pane:get_title()
   local cols = pane:get_dimensions().cols
@@ -67,19 +80,22 @@ local tab_title = function(tab_info)
   return tab_info.active_pane.title
 end
 
+local L_D = Config.divider.left
+local R_D = Config.divider.right
+
 wezterm.on("format-tab-title", function(tab, tabs, panes, cfg, hover, max_width)
   local title = tab_title(tab)
   if tab.is_active then
     return {
       { Background = { Color = mocha.crust } },
       { Foreground = { Color = mocha.surface0 } },
-      { Text = Config.divider.left },
+      { Text = L_D },
       { Background = { Color = mocha.surface0 } },
       { Foreground = { Color = mocha.text } },
       { Text = " " .. title .. " " },
       { Background = { Color = mocha.crust } },
       { Foreground = { Color = mocha.surface0 } },
-      { Text = Config.divider.right },
+      { Text = R_D },
     }
   end
   return title
