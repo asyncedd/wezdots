@@ -89,6 +89,9 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, cfg, hover, max_width)
   if tab.is_active then
     return {
       { Background = { Color = mocha.crust } },
+      { Foreground = { Color = mocha.crust } },
+      { Text = " " },
+      { Background = { Color = mocha.crust } },
       { Foreground = { Color = mocha.surface0 } },
       { Text = L_D },
       { Background = { Color = mocha.surface0 } },
@@ -100,9 +103,32 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, cfg, hover, max_width)
       { Background = { Color = mocha.crust } },
       { Foreground = { Color = mocha.surface0 } },
       { Text = R_D },
+      { Background = { Color = mocha.crust } },
+      { Foreground = { Color = mocha.crust } },
+      { Text = " " },
+    }
+  else
+    return {
+      { Background = { Color = mocha.crust } },
+      { Foreground = { Color = mocha.crust } },
+      { Text = " " },
+      { Background = { Color = mocha.crust } },
+      { Foreground = { Color = mocha.base } },
+      { Text = L_D },
+      { Background = { Color = mocha.base } },
+      { Foreground = { Color = mocha.overlay2 } },
+      { Text = "" .. i .. ":" },
+      { Background = { Color = mocha.base } },
+      { Foreground = { Color = mocha.overlay2 } },
+      { Text = " " .. title .. " " },
+      { Background = { Color = mocha.crust } },
+      { Foreground = { Color = mocha.base } },
+      { Text = R_D },
+      { Background = { Color = mocha.crust } },
+      { Foreground = { Color = mocha.crust } },
+      { Text = " " },
     }
   end
-  return title
 end)
 
 wezterm.on("update-status", function(window, _pane)
@@ -113,7 +139,7 @@ wezterm.on("update-status", function(window, _pane)
     { Text = L_D },
     { Background = { Color = mocha.blue } },
     { Foreground = { Color = mocha.crust } },
-    { Text = " Workspaces" },
+    { Text = " Workspaces " },
     { Background = { Color = mocha.blue } },
     { Foreground = { Color = mocha.crust } },
     { Text = L_D },
