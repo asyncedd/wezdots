@@ -58,7 +58,7 @@ config.colors = {
     background = mocha.base,
     new_tab = {
       bg_color = mocha.base,
-      fg_color = mocha.text,
+      fg_color = mocha.overlay2,
     },
     new_tab_hover = {
       bg_color = mocha.surface0,
