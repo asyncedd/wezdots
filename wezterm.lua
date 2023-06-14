@@ -1,16 +1,16 @@
 local wezterm = require("wezterm")
 
-local config = {}
+local config = {
+  font = wezterm.font("Cartograph CF"),
 
-config.font = wezterm.font("Cartograph CF")
+  colorscheme = "Catppuccin Mocha",
 
-config.color_scheme = "Catppuccin Mocha"
+  animation_fps = 1,
 
-config.animation_fps = 1
+  cursor_blink_ease_in = "Constant",
+  cursor_blink_ease_out = "Constant",
 
-config.cursor_blink_ease_in = "Constant"
-config.cursor_blink_ease_out = "Constant"
-
-config.use_fancy_tab_bar = false
+  use_fancy_tab_bar = false
+}
 
 return config
