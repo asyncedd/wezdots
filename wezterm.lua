@@ -20,6 +20,8 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
+config.tab_bar_at_bottom = true
+
 config.font = wezterm.font({
   family = "Cartograph CF",
   harfbuzz_features = { "calt=1", "clig=1", "liga=1" },
@@ -65,7 +67,7 @@ local tab_title = function(tab_info)
   return tab_info.active_pane.title
 end
 
-wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+wezterm.on("format-tab-title", function(tab, tabs, panes, cfg, hover, max_width)
   local title = tab_title(tab)
   if tab.is_active then
     return {
