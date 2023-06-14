@@ -92,6 +92,10 @@ local function get_process(tab)
       fg = mocha.green,
       icon = " ",
     },
+    ["btm"] = {
+      fg = mocha.subtext0,
+      icon = "󰨇",
+    },
   }
 
   local process_name = string.gsub(tab.active_pane.foreground_process_name, "(.*[/\\])(.*)", "%2")
@@ -166,6 +170,8 @@ config.colors = {
   },
 }
 
+config.freetype_load_target = "Light"
+
 config.tab_bar_style = {
   new_tab = wezterm.format({
     { Background = { Color = mocha.base } },
@@ -213,7 +219,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, cfg, hover, max_width)
       { Text = " " .. i .. ": " },
       { Background = { Color = mocha.surface2 } },
       { Foreground = { Color = icons.fg } },
-      { Text = icons.icon .. " " },
+      { Text = icons.icon .. "  " },
       { Text = title .. " " },
       { Background = { Color = mocha.base } },
       { Foreground = { Color = mocha.surface2 } },
