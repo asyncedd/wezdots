@@ -300,6 +300,10 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, cfg, hover, max_width)
 end)
 
 wezterm.on("update-status", function(window, _pane)
+  local mode = {
+    ["search_mode"] = "󰜏",
+    ["copy_mode"] = "",
+  }
   window:set_left_status(wezterm.format({
     { Background = { Color = mocha.base } },
     { Foreground = { Color = mocha.red } },
@@ -308,6 +312,8 @@ wezterm.on("update-status", function(window, _pane)
     { Foreground = { Color = mocha.base } },
     { Background = { Color = mocha.red } },
     { Text = window:leader_is_active() and leader.on or leader.off },
+    { Text = mode[window:active_key_table()] or "" },
+    { Text = " " },
     { Background = { Color = mocha.red } },
     { Foreground = { Color = mocha.red } },
     { Background = { Color = mocha.red } },
