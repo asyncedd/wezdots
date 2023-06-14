@@ -11,4 +11,6 @@ config.animation_fps = 1
 config.cursor_blink_ease_in = "Constant"
 config.cursor_blink_ease_out = "Constant"
 
+config.use_fancy_tab_bar = false
+
 return config
