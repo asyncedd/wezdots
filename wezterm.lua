@@ -107,21 +107,22 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, cfg, hover, max_width)
       { Text = " " },
     }
   else
+    local hover_color = hover and mocha.surface0 or mocha.base
     return {
       { Background = { Color = mocha.base } },
       { Foreground = { Color = mocha.base } },
       { Text = " " },
       { Background = { Color = mocha.base } },
-      { Foreground = { Color = mocha.base } },
+      { Foreground = { Color = hover_color } },
       { Text = L_D },
-      { Background = { Color = mocha.base } },
+      { Background = { Color = hover_color } },
       { Foreground = { Color = mocha.teal } },
       { Text = "" .. i .. ":" },
-      { Background = { Color = mocha.base } },
+      { Background = { Color = hover_color } },
       { Foreground = { Color = mocha.overlay2 } },
       { Text = " " .. title .. " " },
       { Background = { Color = mocha.base } },
-      { Foreground = { Color = mocha.base } },
+      { Foreground = { Color = hover_color } },
       { Text = R_D },
       { Background = { Color = mocha.base } },
       { Foreground = { Color = mocha.base } },
