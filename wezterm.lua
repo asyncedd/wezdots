@@ -159,15 +159,13 @@ wezterm.on("update-status", function(window, _pane)
     { Background = { Color = mocha.base } },
     { Foreground = { Color = mocha.blue } },
   }))
-  local time = wezterm.time.now():format("%H:%M")
   window:set_right_status(wezterm.format({
     { Background = { Color = mocha.base } },
     { Foreground = { Color = mocha.green } },
     { Text = L_D },
     { Background = { Color = mocha.green } },
     { Foreground = { Color = mocha.base } },
-    { Text = " " },
-    { Text = time .. " " ..  wezterm.strftime("%-m/%-d") .. " " .. day_of_week_in_japan(wezterm.strftime("%u")) },
+    { Text = string.format(" %s %s %s", wezterm.time.now():format("%H:%M"), wezterm.strftime("%-m/%-d"), day_of_week_in_japan(wezterm.strftime("%u")) ) },
     { Text = " " },
   }))
 end)
