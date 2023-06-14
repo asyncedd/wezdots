@@ -84,6 +84,10 @@ local function get_process(tab)
       fg = mocha.blue,
       icon = "󰏖",
     },
+    ["yay"] = {
+      fg = mocha.blue,
+      icon = "󰮯 ",
+    },
   }
 
   local process_name = string.gsub(tab.active_pane.foreground_process_name, "(.*[/\\])(.*)", "%2")
