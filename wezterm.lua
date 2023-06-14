@@ -116,6 +116,18 @@ local dividers = {
     left = utf8.char(0xe0b6),
     right = utf8.char(0xe0b4),
   },
+  slant_right = {
+    left = utf8.char(0xe0be),
+    right = utf8.char(0xe0bc),
+  },
+  slant_left = {
+    left = utf8.char(0xe0ba),
+    right = utf8.char(0xe0b8),
+  },
+  arrows = {
+    left = utf8.char(0xe0b2),
+    right = utf8.char(0xe0b0),
+  },
 }
 
 local leader = {
