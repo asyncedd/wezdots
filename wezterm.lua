@@ -3,114 +3,6 @@ local act = wezterm.action
 local C = require("theme")
 local mocha = C.catppuccin.mocha
 
-local function get_process(tab)
-  local process_icons = {
-    ["docker"] = {
-      fg = mocha.blue,
-      icon = "󰡨",
-    },
-    ["docker-compose"] = {
-      fg = mocha.blue,
-      icon = "󰡨",
-    },
-    ["nvim"] = {
-      fg = mocha.green,
-      icon = "",
-    },
-    ["bob"] = {
-      fg = mocha.blue,
-      icon = "",
-    },
-    ["vim"] = {
-      fg = mocha.green,
-      icon = "",
-    },
-    ["node"] = {
-      fg = mocha.green,
-      icon = "󰋘",
-    },
-    ["zsh"] = {
-      fg = mocha.overlay1,
-      icon = "",
-    },
-    ["bash"] = {
-      fg = mocha.overlay1,
-      icon = "",
-    },
-    ["fish"] = {
-      fg = mocha.green,
-      icon = "󰈺",
-    },
-    ["htop"] = {
-      fg = mocha.yellow,
-      icon = "",
-    },
-    ["btop"] = {
-      fg = mocha.rosewater,
-      icon = "",
-    },
-    ["cargo"] = {
-      fg = mocha.peach,
-      icon = wezterm.nerdfonts.dev_rust,
-    },
-    ["go"] = {
-      fg = mocha.sapphire,
-      icon = "",
-    },
-    ["git"] = {
-      fg = mocha.peach,
-      icon = "󰊢",
-    },
-    ["lazygit"] = {
-      fg = mocha.mauve,
-      icon = "󰊢",
-    },
-    ["lua"] = {
-      fg = mocha.blue,
-      icon = "",
-    },
-    ["wget"] = {
-      fg = mocha.yellow,
-      icon = "󰄠",
-    },
-    ["curl"] = {
-      fg = mocha.yellow,
-      icon = "",
-    },
-    ["gh"] = {
-      fg = mocha.mauve,
-      icon = "",
-    },
-    ["flatpak"] = {
-      fg = mocha.blue,
-      icon = "󰏖",
-    },
-    ["yay"] = {
-      fg = mocha.blue,
-      icon = "󰮯 ",
-    },
-    ["tmux"] = {
-      fg = mocha.green,
-      icon = " ",
-    },
-    ["btm"] = {
-      fg = mocha.subtext0,
-      icon = "󰨇",
-    },
-  }
-
-  local process_name = string.gsub(tab.active_pane.foreground_process_name, "(.*[/\\])(.*)", "%2")
-
-  if not process_name then
-    process_name = "fish"
-  end
-
-  return process_icons[process_name] and process_icons[process_name] or {
-    fg = mocha.text,
-    icon = ""
-  }
-end
-
 local dividers = {
   rounded = {
     left = utf8.char(0xe0b6),
@@ -235,39 +127,22 @@ config.tab_bar_style = {
   }),
 }
 
-local tab_title = function(tab_info)
-  local title = tab_info.tab_title
-  -- if the tab title is explicitly set, take that
-  if title and #title > 0 then
-    return title
-  end
-  -- Otherwise, use the title from the active pane
-  -- in that tab
-  local procs = string.gsub(tab_info.active_pane.foreground_process_name, "(.*[/\\])(.*)", "%2")
-  return procs ~= "fish" and procs or ""
-end
 wezterm.on("format-tab-title", function(tab, tabs, panes, cfg, hover, max_width)
   local i = tab.tab_index + 1
-  local title = tab_title(tab)
-  local icons = get_process(tab)
   if tab.is_active then
     return {
       { Background = { Color = mocha.base } },
       { Foreground = { Color = mocha.base } },
       { Text = " " },
       { Background = { Color = mocha.base } },
-      { Foreground = { Color = mocha.surface2 } },
-      { Text = L_D },
-      { Background = { Color = mocha.surface2 } },
       { Foreground = { Color = mocha.sky } },
+      { Text = L_D },
+      { Background = { Color = mocha.sky } },
+      { Foreground = { Color = mocha.base } },
       { Text = " 󱗜 " },
-      { Text = " " .. i .. ": " },
-      { Background = { Color = mocha.surface2 } },
-      { Foreground = { Color = icons.fg } },
-      { Text = icons.icon .. "  " },
-      { Text = title .. " " },
+      { Text = " " .. i .. " " },
       { Background = { Color = mocha.base } },
-      { Foreground = { Color = mocha.surface2 } },
+      { Foreground = { Color = mocha.sky } },
       { Text = R_D },
       { Background = { Color = mocha.base } },
       { Foreground = { Color = mocha.base } },
@@ -284,11 +159,9 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, cfg, hover, max_width)
       { Text = L_D },
       { Background = { Color = hover_color } },
       { Foreground = { Color = mocha.teal } },
-      { Text = "" .. i .. ": " },
+      { Text = "" .. i },
       { Background = { Color = hover_color } },
       { Foreground = { Color = mocha.overlay2 } },
-      { Text = icons.icon .. " " },
-      { Text = " " .. title .. " " },
       { Background = { Color = mocha.base } },
       { Foreground = { Color = hover_color } },
       { Text = R_D },
