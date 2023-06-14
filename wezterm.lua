@@ -101,4 +101,22 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, cfg, hover, max_width)
   return title
 end)
 
+wezterm.on("update-status", function(window, _pane)
+  window:set_left_status(wezterm.format({
+    { Text = " " },
+    { Background = { Color = mocha.crust } },
+    { Foreground = { Color = mocha.blue } },
+    { Text = L_D },
+    { Background = { Color = mocha.blue } },
+    { Foreground = { Color = mocha.crust } },
+    { Text = " Workspaces" },
+    { Background = { Color = mocha.blue } },
+    { Foreground = { Color = mocha.crust } },
+    { Text = L_D },
+    { Background = { Color = mocha.crust } },
+    { Foreground = { Color = mocha.blue } },
+    { Text = " " },
+  }))
+end)
+
 return config
