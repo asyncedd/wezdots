@@ -165,6 +165,11 @@ config.keys = {
     mods = "LEADER",
     action = act.SpawnTab("CurrentPaneDomain"),
   },
+  {
+    key = "w",
+    mods = "LEADER",
+    action = wezterm.action.CloseCurrentTab { confirm = true },
+  },
 }
 
 for i = 1, 8 do
