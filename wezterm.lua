@@ -155,9 +155,11 @@ wezterm.on("update-status", function(window, _pane)
   }))
   local time = wezterm.time.now():format("%H:%M")
   window:set_right_status(wezterm.format({
+    { Background = { Color = mocha.crust } },
+    { Foreground = { Color = mocha.green } },
+    { Text = L_D },
     { Background = { Color = mocha.green } },
     { Foreground = { Color = mocha.crust } },
-    { Text = " " },
     { Text = " " },
     { Text = time },
     { Text = " " },
