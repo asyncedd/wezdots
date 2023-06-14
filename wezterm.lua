@@ -2,6 +2,99 @@ local wezterm = require("wezterm")
 local C = require("theme")
 local mocha = C.catppuccin.mocha
 
+local function get_process(tab)
+  local process_icons = {
+    ["docker"] = {
+      fg = mocha.blue,
+      icon = "󰡨",
+    },
+    ["docker-compose"] = {
+      fg = mocha.blue,
+      icon = "󰡨",
+    },
+    ["nvim"] = {
+      fg = mocha.green,
+      icon = "",
+    },
+    ["bob"] = {
+      fg = mocha.blue,
+      icon = "",
+    },
+    ["vim"] = {
+      fg = mocha.green,
+      icon = "",
+    },
+    ["node"] = {
+      fg = mocha.green,
+      icon = "󰋘",
+    },
+    ["zsh"] = {
+      fg = mocha.overlay1,
+      icon = "",
+    },
+    ["bash"] = {
+      fg = mocha.overlay1,
+      icon = "",
+    },
+    ["fish"] = {
+      fg = mocha.green,
+      icon = "󰈺",
+    },
+    ["htop"] = {
+      fg = mocha.yellow,
+      icon = "",
+    },
+    ["btop"] = {
+      fg = mocha.rosewater,
+      icon = "",
+    },
+    ["cargo"] = {
+      fg = mocha.peach,
+      icon = wezterm.nerdfonts.dev_rust,
+    },
+    ["go"] = {
+      fg = mocha.sapphire,
+      icon = "",
+    },
+    ["git"] = {
+      fg = mocha.peach,
+      icon = "󰊢",
+    },
+    ["lazygit"] = {
+      fg = mocha.mauve,
+      icon = "󰊢",
+    },
+    ["lua"] = {
+      fg = mocha.blue,
+      icon = "",
+    },
+    ["wget"] = {
+      fg = mocha.yellow,
+      icon = "󰄠",
+    },
+    ["curl"] = {
+      fg = mocha.yellow,
+      icon = "",
+    },
+    ["gh"] = {
+      fg = mocha.mauve,
+      icon = "",
+    },
+    ["flatpak"] = {
+      fg = mocha.blue,
+      icon = "󰏖",
+    },
+  }
+
+  local process_name = string.gsub(tab.active_pane.foreground_process_name, "(.*[/\\])(.*)", "%2")
+
+  if not process_name then
+    process_name = "fish"
+  end
+
+  return process_icons[process_name]
+end
+
 local function day_of_week_in_japan(weeknum)
 	local days = { "日", "月", "火", "水", "木", "金", "土" }
 	return days[weeknum + 1]
@@ -80,32 +173,34 @@ local tab_title = function(tab_info)
   end
   -- Otherwise, use the title from the active pane
   -- in that tab
-  return tab_info.active_pane.title
+  return string.gsub(tab_info.active_pane.foreground_process_name, "(.*[/\\])(.*)", "%2")
 end
 
 local L_D = Config.divider.left
 local R_D = Config.divider.right
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, cfg, hover, max_width)
-	local i = tab.tab_index % 6
+	local i = tab.tab_index + 1
   local title = tab_title(tab)
+  local icons = get_process(tab)
   if tab.is_active then
     return {
       { Background = { Color = mocha.base } },
       { Foreground = { Color = mocha.base } },
       { Text = " " },
       { Background = { Color = mocha.base } },
-      { Foreground = { Color = mocha.sky } },
+      { Foreground = { Color = mocha.surface2 } },
       { Text = L_D },
-      { Background = { Color = mocha.sky } },
-      { Foreground = { Color = mocha.base } },
+      { Background = { Color = mocha.surface2 } },
+      { Foreground = { Color = mocha.sky } },
       { Text = " 󱗜 " },
       { Text = " " .. i .. ": " },
-      { Background = { Color = mocha.sky } },
-      { Foreground = { Color = mocha.base } },
-      { Text = " " .. title .. " " },
+      { Background = { Color = mocha.surface2 } },
+      { Foreground = { Color = icons.fg } },
+      { Text = icons.icon .. " " },
+      { Text = title .. " " },
       { Background = { Color = mocha.base } },
-      { Foreground = { Color = mocha.sky } },
+      { Foreground = { Color = mocha.surface2 } },
       { Text = R_D },
       { Background = { Color = mocha.base } },
       { Foreground = { Color = mocha.base } },
