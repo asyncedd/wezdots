@@ -93,8 +93,8 @@ local function get_process(tab)
   end
 
   return process_icons[process_name] and process_icons[process_name] or {
-    fg = mocha.red,
-    icon = ""
+    fg = mocha.text,
+    icon = ""
   }
 end
 
