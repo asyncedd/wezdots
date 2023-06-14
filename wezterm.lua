@@ -122,6 +122,9 @@ local Config = {
   divider = dividers.rounded
 }
 
+local L_D = Config.divider.left
+local R_D = Config.divider.right
+
 local config = {}
 
 if wezterm.config_builder then
@@ -160,15 +163,26 @@ table.insert(config.hyperlink_rules, {
 config.colors = {
   tab_bar = {
     background = mocha.base,
-    new_tab = {
-      bg_color = mocha.base,
-      fg_color = mocha.overlay2,
-    },
-    new_tab_hover = {
-      bg_color = mocha.surface0,
-      fg_color = mocha.text,
-    },
   },
+}
+
+config.tab_bar_style = {
+  new_tab = wezterm.format({
+    { Background = { Color = mocha.base } },
+    { Foreground = { Color = mocha.text } },
+    { Text = " + " },
+  }),
+  new_tab_hover = wezterm.format({
+    { Background = { Color = mocha.base } },
+    { Foreground = { Color = mocha.surface0 } },
+    { Text = L_D },
+    { Foreground = { Color = mocha.text } },
+    { Background = { Color = mocha.surface0 } },
+    { Text = "+" },
+    { Background = { Color = mocha.base } },
+    { Foreground = { Color = mocha.surface0 } },
+    { Text = R_D },
+  }),
 }
 
 local tab_title = function(tab_info)
@@ -181,10 +195,6 @@ local tab_title = function(tab_info)
   -- in that tab
   return string.gsub(tab_info.active_pane.foreground_process_name, "(.*[/\\])(.*)", "%2")
 end
-
-local L_D = Config.divider.left
-local R_D = Config.divider.right
-
 wezterm.on("format-tab-title", function(tab, tabs, panes, cfg, hover, max_width)
 	local i = tab.tab_index + 1
   local title = tab_title(tab)
