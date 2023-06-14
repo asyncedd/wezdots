@@ -155,6 +155,8 @@ config.use_fancy_tab_bar = false
 
 config.tab_max_width = 50
 
+config.switch_to_last_active_tab_when_closing_tab = true
+
 config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 1000 }
 
 config.keys = {
