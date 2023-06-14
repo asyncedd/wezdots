@@ -55,6 +55,7 @@ table.insert(config.hyperlink_rules, {
 
 config.colors = {
   tab_bar = {
+    background = mocha.base,
     new_tab = {
       bg_color = mocha.base,
       fg_color = mocha.text,
@@ -85,45 +86,45 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, cfg, hover, max_width)
   local title = tab_title(tab)
   if tab.is_active then
     return {
-      { Background = { Color = mocha.crust } },
-      { Foreground = { Color = mocha.crust } },
+      { Background = { Color = mocha.base } },
+      { Foreground = { Color = mocha.base } },
       { Text = " " },
-      { Background = { Color = mocha.crust } },
+      { Background = { Color = mocha.base } },
       { Foreground = { Color = mocha.sky } },
       { Text = L_D },
       { Background = { Color = mocha.sky } },
-      { Foreground = { Color = mocha.crust } },
+      { Foreground = { Color = mocha.base } },
       { Text = " 󱗜 " },
       { Text = " " .. i .. ": " },
       { Background = { Color = mocha.sky } },
-      { Foreground = { Color = mocha.crust } },
+      { Foreground = { Color = mocha.base } },
       { Text = " " .. title .. " " },
-      { Background = { Color = mocha.crust } },
+      { Background = { Color = mocha.base } },
       { Foreground = { Color = mocha.sky } },
       { Text = R_D },
-      { Background = { Color = mocha.crust } },
-      { Foreground = { Color = mocha.crust } },
+      { Background = { Color = mocha.base } },
+      { Foreground = { Color = mocha.base } },
       { Text = " " },
     }
   else
     return {
-      { Background = { Color = mocha.crust } },
-      { Foreground = { Color = mocha.crust } },
+      { Background = { Color = mocha.base } },
+      { Foreground = { Color = mocha.base } },
       { Text = " " },
-      { Background = { Color = mocha.crust } },
-      { Foreground = { Color = mocha.crust } },
+      { Background = { Color = mocha.base } },
+      { Foreground = { Color = mocha.base } },
       { Text = L_D },
-      { Background = { Color = mocha.crust } },
+      { Background = { Color = mocha.base } },
       { Foreground = { Color = mocha.teal } },
       { Text = "" .. i .. ":" },
-      { Background = { Color = mocha.crust } },
+      { Background = { Color = mocha.base } },
       { Foreground = { Color = mocha.overlay2 } },
       { Text = " " .. title .. " " },
-      { Background = { Color = mocha.crust } },
-      { Foreground = { Color = mocha.crust } },
+      { Background = { Color = mocha.base } },
+      { Foreground = { Color = mocha.base } },
       { Text = R_D },
-      { Background = { Color = mocha.crust } },
-      { Foreground = { Color = mocha.crust } },
+      { Background = { Color = mocha.base } },
+      { Foreground = { Color = mocha.base } },
       { Text = " " },
     }
   end
@@ -131,11 +132,11 @@ end)
 
 wezterm.on("update-status", function(window, _pane)
   window:set_left_status(wezterm.format({
-    { Background = { Color = mocha.crust } },
+    { Background = { Color = mocha.base } },
     { Foreground = { Color = mocha.red } },
     { Text = " " },
     { Text = L_D },
-    { Foreground = { Color = mocha.crust } },
+    { Foreground = { Color = mocha.base } },
     { Background = { Color = mocha.red } },
     { Text = window:leader_is_active() and leader.on or leader.off },
     { Background = { Color = mocha.red } },
@@ -144,21 +145,21 @@ wezterm.on("update-status", function(window, _pane)
     { Foreground = { Color = mocha.blue } },
     { Text = L_D },
     { Background = { Color = mocha.blue } },
-    { Foreground = { Color = mocha.crust } },
+    { Foreground = { Color = mocha.base } },
     { Text = " Workspaces " },
     { Background = { Color = mocha.blue } },
-    { Foreground = { Color = mocha.crust } },
+    { Foreground = { Color = mocha.base } },
     { Text = L_D },
-    { Background = { Color = mocha.crust } },
+    { Background = { Color = mocha.base } },
     { Foreground = { Color = mocha.blue } },
   }))
   local time = wezterm.time.now():format("%H:%M")
   window:set_right_status(wezterm.format({
-    { Background = { Color = mocha.crust } },
+    { Background = { Color = mocha.base } },
     { Foreground = { Color = mocha.green } },
     { Text = L_D },
     { Background = { Color = mocha.green } },
-    { Foreground = { Color = mocha.crust } },
+    { Foreground = { Color = mocha.base } },
     { Text = " " },
     { Text = time },
     { Text = " " },
