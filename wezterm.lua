@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+local act = wezterm.action
 local C = require("theme")
 local mocha = C.catppuccin.mocha
 
@@ -155,6 +156,22 @@ config.use_fancy_tab_bar = false
 config.tab_max_width = 50
 
 config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 1000 }
+
+config.keys = {}
+
+for i = 1, 8 do
+  -- CTRL+ALT + number to activate that tab
+  table.insert(config.keys, {
+    key = tostring(i),
+    mods = "LEADER",
+    action = act.ActivateTab(i - 1),
+  })
+  -- F1 through F8 to activate that tab
+  table.insert(config.keys, {
+    key = "F" .. tostring(i),
+    action = act.ActivateTab(i - 1),
+  })
+end
 
 -- default hyperlink rules
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
