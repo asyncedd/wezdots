@@ -72,13 +72,13 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, cfg, hover, max_width)
   if tab.is_active then
     return {
       { Background = { Color = mocha.crust } },
-      { Foreground = { Color = mocha.base } },
+      { Foreground = { Color = mocha.surface0 } },
       { Text = Config.divider.left },
-      { Background = { Color = mocha.base } },
+      { Background = { Color = mocha.surface0 } },
       { Foreground = { Color = mocha.text } },
       { Text = " " .. title .. " " },
       { Background = { Color = mocha.crust } },
-      { Foreground = { Color = mocha.base } },
+      { Foreground = { Color = mocha.surface0 } },
       { Text = Config.divider.right },
     }
   end
