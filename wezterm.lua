@@ -59,16 +59,6 @@ config.colors = {
   },
 }
 
-wezterm.on("update-right-status", function(window, pane)
-  local title = pane:get_title()
-  local cols = pane:get_dimensions().cols
-  local padding = wezterm.pad_right("", (cols / 2) - (string.len(title) / 2))
-  window:set_right_status(wezterm.format({
-    { Text = " " .. title .. " " },
-    { Text = padding },
-  }))
-end)
-
 local tab_title = function(tab_info)
   local title = tab_info.tab_title
   -- if the tab title is explicitly set, take that
