@@ -16,4 +16,14 @@ local config = {
   use_fancy_tab_bar = false
 }
 
+wezterm.on("update-right-status", function(window, pane)
+  local title = pane:get_title()
+  local cols = pane:get_dimensions().cols
+  local padding = wezterm.pad_right('', (cols / 2) - (string.len(title) / 2))
+  window:set_right_status(wezterm.format({
+    { Text = " " .. title .. " " },
+    { Text = padding },
+  }))
+end)
+
 return config
