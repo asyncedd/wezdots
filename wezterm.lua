@@ -2,6 +2,11 @@ local wezterm = require("wezterm")
 local C = require("theme")
 local mocha = C.catppuccin.mocha
 
+local function day_of_week_in_japan(weeknum)
+	local days = { "日", "月", "火", "水", "木", "金", "土" }
+	return days[weeknum + 1]
+end
+
 local dividers = {
   rounded = {
     left = utf8.char(0xe0b6),
@@ -162,7 +167,7 @@ wezterm.on("update-status", function(window, _pane)
     { Background = { Color = mocha.green } },
     { Foreground = { Color = mocha.base } },
     { Text = " " },
-    { Text = time },
+    { Text = time .. " " ..  wezterm.strftime("%-m/%-d") .. " " .. day_of_week_in_japan(wezterm.strftime("%u")) },
     { Text = " " },
   }))
 end)
