@@ -1,7 +1,10 @@
 local wezterm = require("wezterm")
 
 local config = {
-  font = wezterm.font("Cartograph CF"),
+  font = wezterm.font({
+    family = "Cartograph CF",
+    harfbuzz_features = { 'calt=1', 'clig=1', 'liga=1' },
+  }),
 
   color_scheme = "Catppuccin Mocha",
 
