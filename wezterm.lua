@@ -92,7 +92,10 @@ local function get_process(tab)
     process_name = "fish"
   end
 
-  return process_icons[process_name]
+  return process_icons[process_name] and process_icons[process_name] or {
+    fg = mocha.red,
+    icon = ""
+  }
 end
 
 local function day_of_week_in_japan(weeknum)
@@ -217,9 +220,10 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, cfg, hover, max_width)
       { Text = L_D },
       { Background = { Color = hover_color } },
       { Foreground = { Color = mocha.teal } },
-      { Text = "" .. i .. ":" },
+      { Text = "" .. i .. ": " },
       { Background = { Color = hover_color } },
       { Foreground = { Color = mocha.overlay2 } },
+      { Text = icons.icon .. " " },
       { Text = " " .. title .. " " },
       { Background = { Color = mocha.base } },
       { Foreground = { Color = hover_color } },
