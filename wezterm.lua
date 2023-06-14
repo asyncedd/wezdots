@@ -2,21 +2,34 @@ local wezterm = require("wezterm")
 local C = require("theme")
 local mocha = C.catppuccin.mocha
 
-local config = {
-  font = wezterm.font({
-    family = "Cartograph CF",
-    harfbuzz_features = { "calt=1", "clig=1", "liga=1" },
-  }),
+local config = {}
 
-  color_scheme = "Catppuccin Mocha",
+if wezterm.config_builder then
+    -- makes nicer error messages for config errors
+    config = wezterm.config_builder()
+end
 
-  animation_fps = 1,
+config.font = wezterm.font({
+  family = "Cartograph CF",
+  harfbuzz_features = { "calt=1", "clig=1", "liga=1" },
+})
 
-  cursor_blink_ease_in = "Constant",
-  cursor_blink_ease_out = "Constant",
+config.color_scheme = "Catppuccin Mocha"
 
-  use_fancy_tab_bar = false
-}
+config.animation_fps = 1
+
+config.cursor_blink_ease_in = "Constant"
+config.cursor_blink_ease_out = "Constant"
+
+config.use_fancy_tab_bar = false
+
+-- default hyperlink rules
+config.hyperlink_rules = wezterm.default_hyperlink_rules()
+
+table.insert(config.hyperlink_rules, {
+    regex = [[(SC\d+)]],
+    format = 'https://www.shellcheck.net/wiki/$1',
+})
 
 wezterm.on("update-right-status", function(window, pane)
   local title = pane:get_title()
@@ -36,7 +49,7 @@ local tab_title = function(tab_info)
   return tab_info.active_pane.title
 end
 
-wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
+wezterm.on("format-tab-title", function(tab, tabs)
   -- Not sure if it will slow down the performance, at least so far it's good
   -- Is there a better way to get the tab or window cols ?
   local mux_window = wezterm.mux.get_window(tab.window_id)
