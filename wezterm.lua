@@ -154,7 +154,7 @@ config.use_fancy_tab_bar = false
 
 config.tab_max_width = 50
 
-config.leader = { key = "a", mods = "ALT", timeout_milliseconds = 1000 }
+config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 1000 }
 
 -- default hyperlink rules
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
@@ -199,10 +199,11 @@ local tab_title = function(tab_info)
   end
   -- Otherwise, use the title from the active pane
   -- in that tab
-  return string.gsub(tab_info.active_pane.foreground_process_name, "(.*[/\\])(.*)", "%2")
+  local procs = string.gsub(tab_info.active_pane.foreground_process_name, "(.*[/\\])(.*)", "%2")
+  return procs ~= "fish" and procs or ""
 end
 wezterm.on("format-tab-title", function(tab, tabs, panes, cfg, hover, max_width)
-	local i = tab.tab_index + 1
+  local i = tab.tab_index + 1
   local title = tab_title(tab)
   local icons = get_process(tab)
   if tab.is_active then
