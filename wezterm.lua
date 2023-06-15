@@ -2,6 +2,7 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local C = require("theme")
 local mocha = C.catppuccin.mocha
+local Co = require("core.utils.colors")
 
 local dividers = {
   rounded = {
@@ -28,7 +29,8 @@ local leader = {
 }
 
 local Config = {
-  divider = dividers.rounded
+  divider = dividers.rounded,
+  icon = require("icons.emoji"),
 }
 
 local L_D = Config.divider.left
@@ -129,25 +131,26 @@ config.tab_bar_style = {
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, cfg, hover, max_width)
   local i = tab.tab_index + 1
+  local icon = Config.icon[i][1]
+  local hl = Config.icon[i][2]
   if tab.is_active then
     return {
       { Background = { Color = mocha.base } },
       { Foreground = { Color = mocha.base } },
       { Text = " " },
-      { Foreground = { Color = mocha.sky } },
+      { Foreground = { Color = hl } },
       { Text = L_D },
-      { Background = { Color = mocha.sky } },
+      { Background = { Color = hl } },
       { Foreground = { Color = mocha.base } },
-      { Text = " 󱗜 " },
-      { Text = " " .. i .. " " },
+      { Text = " " .. icon .. " " },
       { Background = { Color = mocha.base } },
-      { Foreground = { Color = mocha.sky } },
+      { Foreground = { Color = hl } },
       { Text = R_D },
       { Foreground = { Color = mocha.base } },
       { Text = " " },
     }
   else
-    local hover_color = hover and mocha.surface0 or mocha.base
+    local hover_color = hover and Co.lighten(hl, 0.7, mocha.base) or Co.lighten(hl, 0.3, mocha.base)
     return {
       { Background = { Color = mocha.base } },
       { Foreground = { Color = mocha.base } },
@@ -155,8 +158,8 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, cfg, hover, max_width)
       { Foreground = { Color = hover_color } },
       { Text = L_D },
       { Background = { Color = hover_color } },
-      { Foreground = { Color = hover and mocha.surface2 or mocha.surface1 } },
-      { Text = "" .. i },
+      { Foreground = { Color = hover and mocha.text or mocha.overlay1 } },
+      { Text = " " .. icon .. " " },
       { Background = { Color = mocha.base } },
       { Foreground = { Color = hover_color } },
       { Text = R_D },
