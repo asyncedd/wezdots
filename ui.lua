@@ -88,4 +88,27 @@ function M:apply(Config)
   end)
 end
 
+function M:tab(Config)
+  local L_D = Config.divider.left
+  local R_D = Config.divider.right
+  return {
+    new_tab = wezterm.format({
+      { Background = { Color = mocha.base } },
+      { Foreground = { Color = mocha.text } },
+      { Text = " + " },
+    }),
+    new_tab_hover = wezterm.format({
+      { Background = { Color = mocha.base } },
+      { Foreground = { Color = mocha.surface0 } },
+      { Text = L_D },
+      { Foreground = { Color = mocha.text } },
+      { Background = { Color = mocha.surface0 } },
+      { Text = "+" },
+      { Background = { Color = mocha.base } },
+      { Foreground = { Color = mocha.surface0 } },
+      { Text = R_D },
+    }),
+  }
+end
+
 return M

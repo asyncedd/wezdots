@@ -3,6 +3,7 @@ local act = wezterm.action
 local C = require("theme")
 local mocha = C.catppuccin.mocha
 local Co = require("core.utils.colors")
+local ui = require("ui")
 
 local dividers = {
   rounded = {
@@ -31,8 +32,6 @@ local Config = {
     on = " ",
   }
 }
-
-local leader = Config.leader
 
 local L_D = Config.divider.left
 local R_D = Config.divider.right
@@ -130,6 +129,8 @@ config.tab_bar_style = {
   }),
 }
 
-require("ui"):apply(Config)
+ui:tab(Config)
+
+ui:apply(Config)
 
 return config
