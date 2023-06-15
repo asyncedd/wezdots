@@ -36,7 +36,7 @@ local Config = {
 local L_D = Config.divider.left
 local R_D = Config.divider.right
 
-local config = {}
+local config = wezterm.config_builder()
 
 if wezterm.config_builder then
   -- makes nicer error messages for config errors
