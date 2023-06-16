@@ -22,7 +22,7 @@ function M:apply(Config)
         { Foreground = { Color = bg } },
         { Text = L_D },
         { Background = { Color = bg } },
-        { Foreground = { Color = mocha.base } },
+        { Foreground = { Color = fg ~= nil and fg or mocha.base } },
         { Text = " " .. icon .. " " },
         { Background = { Color = mocha.base } },
         { Foreground = { Color = bg } },

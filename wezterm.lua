@@ -2,7 +2,6 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local C = require("theme")
 local mocha = C.catppuccin.mocha
-local Co = require("core.utils.colors")
 local ui = require("ui")
 
 local dividers = {
