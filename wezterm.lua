@@ -28,7 +28,7 @@ local user_settigns = require("settings")
 
 local Config = {
   divider = "rounded",
-  icon = require("icons.emoji"),
+  icon = "emoji",
   leader = {
     off = " ",
     on = " ",
@@ -36,6 +36,8 @@ local Config = {
 }
 
 Config = std.merge_tbl(Config, user_settigns)
+
+Config.icon = require("icons." .. Config.icon)
 
 local L_D = dividers[Config.divider].left
 local R_D = dividers[Config.divider].right
