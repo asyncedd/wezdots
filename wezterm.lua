@@ -6,19 +6,19 @@ local ui = require("ui")
 local std = require("std")
 
 local dividers = {
-  rounded = {
+  ["rounded"] = {
     left = utf8.char(0xe0b6),
     right = utf8.char(0xe0b4),
   },
-  slant_right = {
+  ["slant_right"] = {
     left = utf8.char(0xe0be),
     right = utf8.char(0xe0bc),
   },
-  slant_left = {
+  ["slant_left"] = {
     left = utf8.char(0xe0ba),
     right = utf8.char(0xe0b8),
   },
-  arrows = {
+  ["arrows"] = {
     left = utf8.char(0xe0b2),
     right = utf8.char(0xe0b0),
   },
@@ -27,7 +27,7 @@ local dividers = {
 local user_settigns = require("settings")
 
 local Config = {
-  divider = dividers.rounded,
+  divider = "rounded",
   icon = require("icons.emoji"),
   leader = {
     off = " ",
@@ -37,8 +37,8 @@ local Config = {
 
 Config = std.merge_tbl(Config, user_settigns)
 
-local L_D = Config.divider.left
-local R_D = Config.divider.right
+local L_D = dividers[Config.divider].left
+local R_D = dividers[Config.divider].right
 
 local config = wezterm.config_builder()
 
@@ -133,8 +133,13 @@ config.tab_bar_style = {
   }),
 }
 
-ui:tab(Config)
+local metadata = {
+  L_D = L_D,
+  R_D = R_D,
+}
 
-ui:apply(Config)
+ui:tab(Config, metadata)
+
+ui:apply(Config, metadata)
 
 return config

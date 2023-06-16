@@ -5,9 +5,9 @@ local mocha = require("theme").catppuccin.mocha
 local std = require("std")
 local Co = std.colors
 
-function M:apply(Config)
-  local L_D = Config.divider.left
-  local R_D = Config.divider.right
+function M:apply(Config, metadata)
+  local L_D = metadata.L_D
+  local R_D = metadata.R_D
   local leader = Config.leader
 
   wezterm.on("format-tab-title", function(tab, tabs, panes, cfg, hover, max_width)
@@ -90,9 +90,9 @@ function M:apply(Config)
   end)
 end
 
-function M:tab(Config)
-  local L_D = Config.divider.left
-  local R_D = Config.divider.right
+function M:tab(Config, metadata)
+  local L_D = metadata.L_D
+  local R_D = metadata.R_D
   return {
     new_tab = wezterm.format({
       { Background = { Color = mocha.base } },
