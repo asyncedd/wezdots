@@ -41,8 +41,10 @@ local ok, req_icon = pcall(require, "icons." .. Config.icon)
 
 Config.icon = ok ~= false and req_icon or require("icons.emoji")
 
-local L_D = dividers[Config.divider].left
-local R_D = dividers[Config.divider].right
+local divider_ok = dividers[Config.divider] ~= nil and true or false
+
+local L_D = divider_ok and dividers[Config.divider].left or dividers["rounded"].left
+local R_D = divider_ok and dividers[Config.divider].right or dividers["rounded"].right
 
 local config = wezterm.config_builder()
 
