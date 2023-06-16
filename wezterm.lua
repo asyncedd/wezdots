@@ -24,7 +24,7 @@ local dividers = {
   },
 }
 
-local user_settigns = require("settings")
+local user_settings = require("settings")
 
 local Config = {
   divider = "rounded",
@@ -35,7 +35,7 @@ local Config = {
   },
 }
 
-Config = std.merge_tbl(Config, user_settigns)
+Config = std.merge_tbl(Config, user_settings)
 
 local ok, req_icon = pcall(require, "icons." .. Config.icon)
 
