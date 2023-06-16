@@ -2,7 +2,7 @@
 
 local M = {}
 
-local hsluv = require("core.utils.hsluv")
+local hsluv = require("std.hsluv")
 
 M.bg = "#000000"
 M.fg = "#ffffff"

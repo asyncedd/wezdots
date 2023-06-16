@@ -2,7 +2,8 @@ local M = {}
 
 local wezterm = require("wezterm")
 local mocha = require("theme").catppuccin.mocha
-local Co = require("core.utils.colors")
+local std = require("std")
+local Co = std.colors
 
 function M:apply(Config)
   local L_D = Config.divider.left
