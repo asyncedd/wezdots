@@ -32,12 +32,14 @@ local Config = {
   leader = {
     off = " ",
     on = " ",
-  }
+  },
 }
 
 Config = std.merge_tbl(Config, user_settigns)
 
-Config.icon = require("icons." .. Config.icon)
+local ok, req_icon = pcall(require, "icons." .. Config.icon)
+
+Config.icon = ok ~= false and req_icon or require("icons.emoji")
 
 local L_D = dividers[Config.divider].left
 local R_D = dividers[Config.divider].right
