@@ -12,25 +12,26 @@ function M:apply(Config)
   wezterm.on("format-tab-title", function(tab, tabs, panes, cfg, hover, max_width)
     local i = tab.tab_index + 1
     local icon = Config.icon[i][1]
-    local hl = Config.icon[i][2]
+    local bg = Config.icon[i].bg
+    local fg = Config.icon[i].fg
     if tab.is_active then
       return {
         { Background = { Color = mocha.base } },
         { Foreground = { Color = mocha.base } },
         { Text = " " },
-        { Foreground = { Color = hl } },
+        { Foreground = { Color = bg } },
         { Text = L_D },
-        { Background = { Color = hl } },
+        { Background = { Color = bg } },
         { Foreground = { Color = mocha.base } },
         { Text = " " .. icon .. " " },
         { Background = { Color = mocha.base } },
-        { Foreground = { Color = hl } },
+        { Foreground = { Color = bg } },
         { Text = R_D },
         { Foreground = { Color = mocha.base } },
         { Text = " " },
       }
     else
-      local hover_color = hover and Co.lighten(hl, 0.7, mocha.base) or Co.lighten(hl, 0.3, mocha.base)
+      local hover_color = hover and Co.lighten(bg, 0.7, mocha.base) or Co.lighten(bg, 0.3, mocha.base)
       return {
         { Background = { Color = mocha.base } },
         { Foreground = { Color = mocha.base } },
@@ -38,7 +39,7 @@ function M:apply(Config)
         { Foreground = { Color = hover_color } },
         { Text = L_D },
         { Background = { Color = hover_color } },
-        { Foreground = { Color = hover and mocha.text or mocha.overlay1 } },
+        { Foreground = { Color = hover and fg ~= nil and fg or (mocha.text or mocha.overlay1) } },
         { Text = " " .. icon .. " " },
         { Background = { Color = mocha.base } },
         { Foreground = { Color = hover_color } },
