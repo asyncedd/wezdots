@@ -3,6 +3,7 @@ local act = wezterm.action
 local C = require("theme")
 local mocha = C.catppuccin.mocha
 local ui = require("ui")
+local std = require("std")
 
 local dividers = {
   rounded = {
@@ -23,6 +24,8 @@ local dividers = {
   },
 }
 
+local user_settigns = require("settings")
+
 local Config = {
   divider = dividers.rounded,
   icon = require("icons.emoji"),
@@ -31,6 +34,8 @@ local Config = {
     on = " ",
   }
 }
+
+Config = std.merge_tbl(Config, user_settigns)
 
 local L_D = Config.divider.left
 local R_D = Config.divider.right
