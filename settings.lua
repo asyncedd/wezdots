@@ -1,6 +1,6 @@
 return {
   leader = {
-    off = "a ",
+    off = " ",
     on = " ",
   }
 }
