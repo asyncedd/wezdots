@@ -56,9 +56,21 @@ end
 config.tab_bar_at_bottom = true
 
 config.font = wezterm.font({
-  family = "VictorMono",
+  family = "JetBrainsMono",
   harfbuzz_features = { "calt=1", "clig=1", "liga=1" },
 })
+
+config.font_rules = {
+  {
+    italic = true,
+    intensity = 'Normal',
+    font = wezterm.font {
+      family = 'VictorMono',
+      style = 'Italic',
+      weight = "DemiBold",
+    },
+  },
+}
 
 config.color_scheme = "Catppuccin Mocha"
 
