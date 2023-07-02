@@ -56,7 +56,7 @@ end
 config.tab_bar_at_bottom = true
 
 config.font = wezterm.font({
-  family = "Cartograph CF",
+  family = "VictorMono",
   harfbuzz_features = { "calt=1", "clig=1", "liga=1" },
 })
 
