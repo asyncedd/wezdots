@@ -75,6 +75,8 @@ config.switch_to_last_active_tab_when_closing_tab = true
 
 config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 1000 }
 
+config.enable_wayland = true
+
 config.keys = {
   -- Create a new tab in the same domain as the current pane.
   -- This is usually what you want.
