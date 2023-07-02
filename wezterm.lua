@@ -63,7 +63,6 @@ config.font = wezterm.font({
 config.font_rules = {
   {
     italic = true,
-    intensity = 'Normal',
     font = wezterm.font {
       family = 'VictorMono',
       style = 'Italic',
