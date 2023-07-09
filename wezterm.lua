@@ -57,7 +57,6 @@ config.tab_bar_at_bottom = true
 
 config.font = wezterm.font_with_fallback({
   family = "JetBrainsMono",
-  harfbuzz_features = { "calt=1", "clig=1", "liga=1" },
 })
 
 config.font_rules = {
