@@ -23,15 +23,11 @@ local list = {
   { "🌰", bg = mocha.peach },
 }
 
-math.randomseed(os.time() * os.time() * os.time() * 213128414 - 123213)
-
--- Create a copy of the list
 local shuffledList = {}
-for i = 1, #list do
-  shuffledList[i] = list[i]
-end
+table.move(list, 1, #list, 1, shuffledList)
 
--- Perform Fisher-Yates shuffle
+math.randomseed(os.time())
+
 for i = #shuffledList, 2, -1 do
   local j = math.random(i)
   shuffledList[i], shuffledList[j] = shuffledList[j], shuffledList[i]

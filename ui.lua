@@ -51,7 +51,7 @@ function M:apply(Config, metadata)
 		end
 	end)
 
-	wezterm.on("update-status", function(window, _pane)
+	wezterm.on("update-status", function(window)
 		local mode = {
 			["search_mode"] = "󰜏",
 			["copy_mode"] = "",
@@ -65,32 +65,16 @@ function M:apply(Config, metadata)
 			{ Background = { Color = mocha.red } },
 			{ Text = window:leader_is_active() and leader.on or leader.off },
 			{ Text = mode[window:active_key_table()] or "" },
-			{ Text = " " },
 			{ Background = { Color = mocha.red } },
-			{ Foreground = { Color = mocha.blue } },
-			{ Text = L_D },
-			{ Background = { Color = mocha.blue } },
-			{ Foreground = { Color = mocha.base } },
-			{ Text = " Workspaces " },
-			{ Background = { Color = mocha.blue } },
 			{ Foreground = { Color = mocha.base } },
 			{ Text = L_D },
 			{ Background = { Color = mocha.base } },
 			{ Foreground = { Color = mocha.blue } },
-		}))
-		window:set_right_status(wezterm.format({
-			{ Background = { Color = mocha.base } },
-			{ Foreground = { Color = mocha.green } },
-			{ Text = L_D },
-			{ Background = { Color = mocha.green } },
-			{ Foreground = { Color = mocha.base } },
-			{ Text = string.format(" %s %s", wezterm.time.now():format("%H:%M"), wezterm.strftime("%-m/%-d")) },
-			{ Text = " " },
 		}))
 	end)
 end
 
-function M:tab(Config, metadata)
+function M:tab(_, metadata)
 	local L_D = metadata.L_D
 	local R_D = metadata.R_D
 	return {
