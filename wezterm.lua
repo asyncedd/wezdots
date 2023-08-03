@@ -55,8 +55,8 @@ end
 
 config.tab_bar_at_bottom = true
 
-config.font = wezterm.font_with_fallback({
-  family = "JetBrainsMono",
+config.font = wezterm.font({
+  family = "Fira Code",
 })
 
 config.font_rules = {
