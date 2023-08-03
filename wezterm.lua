@@ -55,7 +55,7 @@ end
 
 config.tab_bar_at_bottom = true
 
-config.font = wezterm.font({
+config.font = wezterm.font_with_fallback({
   family = "Fira Code",
 })
 
